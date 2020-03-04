@@ -1,0 +1,31 @@
+1.Определить, кто из клиентов покупал настольные лампы (Desc lamp) 
+select distinct cu.c_name
+from Product p, Sale sa, Customer cu
+where p.p_desc='Desc Lamp'and
+p.p_id=sa.p_id and cu.c_id=sa.c_id
+
+2.Определить названия фирм, производящих Бронзовые скульптуры (Bronze sculpture).
+select distinct m.m_name 
+from Product p,Manufact m
+where p.p_desc='Bronze sculpture' and
+p.m_id=m.m_id 
+go
+
+3.Определить, кто из клиентов покупал товар производства фирмы Лампы Лама (Lampy Lama).
+select distinct c.c_name 
+from Sale sa ,Customer c,Product p, Manufact m
+where  m.m_name= 'Lampy Lama'and 
+sa.c_id=c.c_id and sa.p_id=p.p_id and p.m_id=m.m_id
+go
+
+4.Определить имена сотрудников, продававших товары, произведенные в Перу (Peru).
+select distinct s.sp_name 
+from Sale sa ,Sperson s,Product p, Manufact m, Country cn
+where cn.country='Peru'and sa.sp_id=s.sp_id and sa.p_id=p.p_id and p.m_id=m.m_id and m.cn_id=cn.cn_id
+go
+
+5.Определить фамилии клиентов, покупавших товары у сотрудника Родни Джонса.
+select distinct c.c_name 
+from Sale sa ,Customer c,Sperson s 
+where s.sp_name='Rodny Djons' and 
+sa.c_id=c.c_id and sa.sp_id=s.sp_id 
